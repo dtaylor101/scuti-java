@@ -12,6 +12,7 @@ public class ConfigurationManager {
     public static String dbuser = "";
     public static String dbpass = "";
     public static void getConfiguration() {
+        long millis = System.currentTimeMillis();
         try{
             System.out.println(App.LOADING + "Loading configuration file...");
             Wini ini = new Wini(new File("config.ini"));
@@ -22,7 +23,7 @@ public class ConfigurationManager {
             dbpass = ini.get("database", "dbpass");
 
 
-            System.out.println(App.SUCCESS + "Configuration manager -> OK!");
+            System.out.println(App.SUCCESS + "Configuration manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
         }catch(Exception e){
             System.err.println(App.ERROR + e.getMessage());
         }

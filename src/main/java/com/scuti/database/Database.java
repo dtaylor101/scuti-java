@@ -8,6 +8,7 @@ import com.zaxxer.hikari.HikariDataSource;
 public class Database {
     private static HikariDataSource database;
     public static void configure() {
+        long millis = System.currentTimeMillis();
         try {
             System.out.println(App.LOADING + "Connection to database...");
             HikariConfig dbConfig = new HikariConfig();
@@ -16,7 +17,7 @@ public class Database {
             dbConfig.setUsername(ConfigurationManager.dbuser);
             dbConfig.setPassword(ConfigurationManager.dbpass);
 
-            System.out.println(App.SUCCESS + "Database manager -> OK!");
+            System.out.println(App.SUCCESS + "Database manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
             database = new HikariDataSource(dbConfig);
         } catch (Exception e) {
             System.out.println(App.ERROR + "Unable to connect to the database.");
