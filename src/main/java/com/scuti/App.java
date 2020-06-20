@@ -25,7 +25,9 @@ public class App
                     "   |\\_________\\|_______|\\|_______|    \\|__|  \\|__|\\|_______|\\|__|     \\|__|\\|_______|\n" +
                     "   \\|_________| " + ANSI_YELLOW + version + ANSI_WHITE + " - By Tig3r & Kozen\n" +
 
+                    "" +
                     "                                                                                             ";
+
     public static void main(String[] args)
     {
         System.out.println( ANSI_YELLOW + logo );
@@ -33,6 +35,7 @@ public class App
         System.out.println("");
         System.out.println("");
         Database.configure();
+
         clearScreen();
         System.out.println( ANSI_WHITE + logo );
         System.out.println( ANSI_WHITE + "[" + ANSI_GREEN + "BUILD" + ANSI_WHITE + "] " + "Soon enft mhh...");
