@@ -45,8 +45,6 @@ public class App
 
     public static void main(String[] args) throws SQLException {
         // SCUTI EMU
-        System.out.println( ANSI_YELLOW + logo );
-        System.out.println( "Made with heart by Kozen and Tig3r" + ANSI_WHITE + " - " + ANSI_PURPLE + version);
 
         if (osName.startsWith("Windows") && (!classPath.contains("idea_rt.jar"))) {
             AnsiConsole.systemInstall();
