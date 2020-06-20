@@ -8,6 +8,7 @@ public class App
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_WHITE = "\u001B[37m";
     public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_GREEN = "\u001B[32m";
     //Logo & version
     public final static String BUILD = "0.0.1a";
     public static final String version = "Scuti EMULATOR" + BUILD;
@@ -33,8 +34,14 @@ public class App
                     "                                                                                             ";
     public static void main( String[] args )
     {
+        clearScreen();
+        System.out.println( ANSI_WHITE + logo );
+        System.out.println( ANSI_YELLOW + "Made with heart by Kozen and Tig3r" + ANSI_WHITE + " - " + ANSI_YELLOW + version);
+        System.out.println( ANSI_WHITE + "[" + ANSI_GREEN + "BUILD" + ANSI_WHITE + "] " + "Soon enft mhh...");
+    }
 
-        System.out.println( ANSI_YELLOW + logo );
-        System.out.println( "Made with heart by Kozen and Tig3r" + ANSI_WHITE + " - " + ANSI_PURPLE + version);
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
