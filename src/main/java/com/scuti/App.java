@@ -1,9 +1,14 @@
 package com.scuti;
 
+import com.scuti.core.ConfigurationManager;
 import com.scuti.database.Database;
+import org.fusesource.jansi.AnsiConsole;
 
 public class App
 {
+    private static final String  classPath = System.getProperty("java.class.path");
+    private static final String osName = System.getProperty("os.name");
+
     // Colors
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLUE = "\u001B[34m";
@@ -11,6 +16,10 @@ public class App
     public static final String ANSI_WHITE = "\u001B[37m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String SUCCESS = ANSI_WHITE + "[" + ANSI_GREEN + "SUCCESS" + ANSI_WHITE + "] ";
+    public static final String ERROR = ANSI_WHITE + "[" + ANSI_RED + "ERROR" + ANSI_WHITE + "] ";
+    public static final String LOADING = ANSI_WHITE + "[" + ANSI_YELLOW + "LOADING" + ANSI_WHITE + "] ";
+    public static final String INFO = ANSI_WHITE + "[" + ANSI_PURPLE + "INFO" + ANSI_WHITE + "] ";
     //Logo & version
     public final static String BUILD = "1.0-SNAPSHOT";
     public static final String version = "Scuti EMULATOR " + BUILD;
@@ -36,9 +45,14 @@ public class App
         System.out.println("");
         Database.configure();
 
+        if (osName.startsWith("Windows") && (!classPath.contains("idea_rt.jar"))) {
+            AnsiConsole.systemInstall();
+        }
         clearScreen();
         System.out.println( ANSI_WHITE + logo );
-        System.out.println( ANSI_WHITE + "[" + ANSI_GREEN + "BUILD" + ANSI_WHITE + "] " + "Soon enft mhh...");
+        System.out.println( INFO + version);
+        ConfigurationManager.getConfiguration();
+        Database.configure();
     }
 
     public static void clearScreen() {
