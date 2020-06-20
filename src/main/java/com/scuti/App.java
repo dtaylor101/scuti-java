@@ -1,5 +1,7 @@
 package com.scuti;
 
+import com.scuti.database.Database;
+
 public class App
 {
     // Colors
@@ -31,10 +33,12 @@ public class App
                     " SSSSSSSSSSSSSSS       cccccccccccccccc    uuuuuuuu  uuuu        ttttttttttt  iiiiiiii\n" +
 
                     "                                                                                             ";
-    public static void main( String[] args )
+    public static void main(String[] args)
     {
-
         System.out.println( ANSI_YELLOW + logo );
         System.out.println( "Made with heart by Kozen and Tig3r" + ANSI_WHITE + " - " + ANSI_PURPLE + version);
+        System.out.println("");
+        System.out.println("");
+        Database.configure();
     }
 }
