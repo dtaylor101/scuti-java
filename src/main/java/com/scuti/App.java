@@ -42,7 +42,7 @@ public class App
         }
         clearScreen();
         System.out.println( ANSI_WHITE + logo );
-        System.out.println( INFO + "ScutiEMU" + version);
+        System.out.println( INFO + version);
         ConfigurationManager.getConfiguration();
         Database.configure();
     }
