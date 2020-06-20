@@ -17,14 +17,14 @@ public class Database {
             dbConfig.setUsername(ConfigurationManager.dbuser);
             dbConfig.setPassword(ConfigurationManager.dbpass);
 
-            System.out.println(App.SUCCESS + "Database manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
             database = new HikariDataSource(dbConfig);
+            System.out.println(App.SUCCESS + "Database manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
         } catch (Exception e) {
             System.out.println(App.ERROR + "Unable to connect to the database.");
         }
     }
 
-    public HikariDataSource getDB() {
+    public static HikariDataSource getDB() {
         return database;
     }
 }

@@ -2,7 +2,11 @@ package com.scuti;
 
 import com.scuti.core.ConfigurationManager;
 import com.scuti.database.Database;
+import com.scuti.rooms.RoomManager;
+import com.zaxxer.hikari.HikariDataSource;
 import org.fusesource.jansi.AnsiConsole;
+
+import java.sql.SQLException;
 
 public class App
 {
@@ -37,22 +41,28 @@ public class App
                     "" +
                     "                                                                                             ";
 
-    public static void main(String[] args)
-    {
+    private static HikariDataSource database;
+
+    public static void main(String[] args) throws SQLException {
+        // SCUTI EMU
         System.out.println( ANSI_YELLOW + logo );
         System.out.println( "Made with heart by Kozen and Tig3r" + ANSI_WHITE + " - " + ANSI_PURPLE + version);
-        System.out.println("");
-        System.out.println("");
-        Database.configure();
 
         if (osName.startsWith("Windows") && (!classPath.contains("idea_rt.jar"))) {
             AnsiConsole.systemInstall();
         }
         clearScreen();
+
         System.out.println( ANSI_WHITE + logo );
         System.out.println( INFO + version);
+
+        // DATABASE
         ConfigurationManager.getConfiguration();
         Database.configure();
+
+        // ROOMS
+        RoomManager.loadRooms();
+        System.out.println(RoomManager.getRoomsLoaded()); // / ! \ TEST!
     }
 
     public static void clearScreen() {

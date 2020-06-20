@@ -6,11 +6,11 @@ import java.io.File;
 
 
 public class ConfigurationManager {
-    public static String dbhost = "";
-    public static String dbport = "";
-    public static String dbname = "";
-    public static String dbuser = "";
-    public static String dbpass = "";
+    public static String dbhost;
+    public static String dbport;
+    public static String dbname;
+    public static String dbuser;
+    public static String dbpass;
     public static void getConfiguration() {
         long millis = System.currentTimeMillis();
         try{

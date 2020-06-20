@@ -20,7 +20,7 @@ public class Room {
         this.id = req.getInt("id");
         this.name = req.getString("name");
         this.description = req.getString("description");
-        this.ownerId = req.getInt("ownerid");
+        this.ownerId = req.getInt("owner_id");
     }
 
     public int getId() {
