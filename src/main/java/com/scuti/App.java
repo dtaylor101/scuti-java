@@ -10,33 +10,24 @@ public class App
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_GREEN = "\u001B[32m";
     //Logo & version
-    public final static String BUILD = "0.0.1a";
-    public static final String version = "Scuti EMULATOR" + BUILD;
+    public final static String BUILD = "1.0-SNAPSHOT";
+    public static final String version = "Scuti EMULATOR " + BUILD;
     private static final String logo =
             "\n" +
-                    "   SSSSSSSSSSSSSSS                                              tttt            iiii  \n" +
-                    " SS:::::::::::::::S                                          ttt:::t           i::::i\n" +
-                    "S:::::SSSSSS::::::S                                          t:::::t            iiii  \n" +
-                    "S:::::S     SSSSSSS                                          t:::::t                  \n" +
-                    "S:::::S                ccccccccccccccccuuuuuu    uuuuuuttttttt:::::ttttttt    iiiiiii \n" +
-                    "S:::::S              cc:::::::::::::::cu::::u    u::::ut:::::::::::::::::t    i:::::i \n" +
-                    " S::::SSSS          c:::::::::::::::::cu::::u    u::::ut:::::::::::::::::t     i::::i \n" +
-                    "  SS::::::SSSSS    c:::::::cccccc:::::cu::::u    u::::utttttt:::::::tttttt     i::::i \n" +
-                    "    SSS::::::::SS  c::::::c     cccccccu::::u    u::::u      t:::::t           i::::i \n" +
-                    "       SSSSSS::::S c:::::c             u::::u    u::::u      t:::::t           i::::i \n" +
-                    "            S:::::Sc:::::c             u::::u    u::::u      t:::::t           i::::i \n" +
-                    "            S:::::Sc::::::c     cccccccu:::::uuuu:::::u      t:::::t    tttttt i::::i \n" +
-                    "SSSSSSS     S:::::Sc:::::::cccccc:::::cu:::::::::::::::uu    t::::::tttt:::::ti::::::i\n" +
-                    "S::::::SSSSSS:::::S c:::::::::::::::::c u:::::::::::::::u    tt::::::::::::::ti::::::i\n" +
-                    "S:::::::::::::::SS   cc:::::::::::::::c  uu::::::::uu:::u      tt:::::::::::tti::::::i\n" +
-                    " SSSSSSSSSSSSSSS       cccccccccccccccc    uuuuuuuu  uuuu        ttttttttttt  iiiiiiii\n" +
+                    " ________  ________  ___  ___  _________  ___  _______   _____ ______   ___  ___     \n" +
+                    "|\\   ____\\|\\   ____\\|\\  \\|\\  \\|\\___   ___\\\\  \\|\\  ___ \\ |\\   _ \\  _   \\|\\  \\|\\  \\    \n" +
+                    "\\ \\  \\___|\\ \\  \\___|\\ \\  \\\\\\  \\|___ \\  \\_\\ \\  \\ \\   __/|\\ \\  \\\\\\__\\ \\  \\ \\  \\\\\\  \\   \n" +
+                    " \\ \\_____  \\ \\  \\    \\ \\  \\\\\\  \\   \\ \\  \\ \\ \\  \\ \\  \\_|/_\\ \\  \\\\|__| \\  \\ \\  \\\\\\  \\  \n" +
+                    "  \\|____|\\  \\ \\  \\____\\ \\  \\\\\\  \\   \\ \\  \\ \\ \\  \\ \\  \\_|\\ \\ \\  \\    \\ \\  \\ \\  \\\\\\  \\ \n" +
+                    "    ____\\_\\  \\ \\_______\\ \\_______\\   \\ \\__\\ \\ \\__\\ \\_______\\ \\__\\    \\ \\__\\ \\_______\\\n" +
+                    "   |\\_________\\|_______|\\|_______|    \\|__|  \\|__|\\|_______|\\|__|     \\|__|\\|_______|\n" +
+                    "   \\|_________| " + ANSI_YELLOW + version + ANSI_WHITE + " - By Tig3r & Kozen\n" +
 
                     "                                                                                             ";
     public static void main( String[] args )
     {
         clearScreen();
         System.out.println( ANSI_WHITE + logo );
-        System.out.println( ANSI_YELLOW + "Made with heart by Kozen and Tig3r" + ANSI_WHITE + " - " + ANSI_YELLOW + version);
         System.out.println( ANSI_WHITE + "[" + ANSI_GREEN + "BUILD" + ANSI_WHITE + "] " + "Soon enft mhh...");
     }
 
