@@ -1,6 +1,7 @@
 package com.scuti.database;
 
 import com.scuti.App;
+import com.scuti.core.ConfigurationManager;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -11,9 +12,9 @@ public class Database {
             System.out.println(App.LOADING + "Connection to database...");
             HikariConfig dbConfig = new HikariConfig();
             dbConfig.setDriverClassName("com.mysql.jdbc.Driver");
-            dbConfig.setJdbcUrl("jdbc:mysql://localhost:3306/scuti");
-            dbConfig.setUsername("root");
-            dbConfig.setPassword("");
+            dbConfig.setJdbcUrl("jdbc:mysql://" + ConfigurationManager.dbhost + ":" + ConfigurationManager.dbport + "/" + ConfigurationManager.dbname + "");
+            dbConfig.setUsername(ConfigurationManager.dbuser);
+            dbConfig.setPassword(ConfigurationManager.dbpass);
 
             System.out.println(App.SUCCESS + "Database manager -> OK!");
             database = new HikariDataSource(dbConfig);
