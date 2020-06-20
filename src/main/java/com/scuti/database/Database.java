@@ -21,6 +21,7 @@ public class Database {
             System.out.println(App.SUCCESS + "Database manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
         } catch (Exception e) {
             System.out.println(App.ERROR + "Unable to connect to the database.");
+            System.exit(0);
         }
     }
 
