@@ -25,6 +25,7 @@ public class RoomManager {
             }
         } catch (Exception e) {
             System.out.println(App.ERROR + "Unable to load room manager!");
+            System.exit(0);
         }
         System.out.println(App.SUCCESS + "Room manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
     }
