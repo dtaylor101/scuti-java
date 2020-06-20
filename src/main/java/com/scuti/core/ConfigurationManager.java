@@ -23,10 +23,10 @@ public class ConfigurationManager {
             dbpass = ini.get("database", "dbpass");
 
 
-            System.out.println(App.SUCCESS + "Configuration manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
         }catch(Exception e){
             System.err.println(App.ERROR + e.getMessage());
             System.exit(0);
         }
+        System.out.println(App.SUCCESS + "Configuration manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
     }
 }
