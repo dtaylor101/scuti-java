@@ -1,8 +1,10 @@
+
 package com.scuti;
 
 import com.scuti.core.ConfigurationManager;
 import com.scuti.database.Database;
 import com.scuti.rooms.RoomManager;
+import com.scuti.networking.*;
 import com.zaxxer.hikari.HikariDataSource;
 import org.fusesource.jansi.AnsiConsole;
 
@@ -61,6 +63,9 @@ public class App
         // ROOMS
         RoomManager.loadRooms();
         System.out.println(RoomManager.getRoomsLoaded()); // / ! \ TEST!
+
+        // GAMESERVER
+        Server.connect();
     }
 
     public static void clearScreen() {
