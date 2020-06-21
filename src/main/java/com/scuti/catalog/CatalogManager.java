@@ -40,12 +40,13 @@ public class CatalogManager {
 
     public static void loadPages() throws SQLException {
         System.out.println(App.LOADING + "Loading catalog pages...");
+        long millis = System.currentTimeMillis();
         try(Connection connection = Database.getDB().getConnection()) {
             try(Statement statement = connection.createStatement()) {
                 try(ResultSet req = statement.executeQuery("SELECT * FROM catalog_pages")) {
                     while(req.next()) {
                         pages.put(req.getInt("id"), new CatalogPage(req));
-                        System.out.println(App.SUCCESS + "Catalog pages -> OK!");
+                        System.out.println(App.SUCCESS + "Catalog pages -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
                     }
                 }
             }
