@@ -1,4 +1,4 @@
-## scuti-java
+## :zap: scuti-java
 
 An opensource Habbo emulator written in Java compatible with [scuti-client](https://github.com/kozennnn/scuti-client) only.
 
