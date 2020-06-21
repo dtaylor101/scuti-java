@@ -25,7 +25,7 @@ public class Server {
 
     public static void connect() {
         staticFileLocation("/public");
-        webSocket("/chat", GameServer.class);
+        webSocket("/websocket", GameServer.class);
         init();
 
     }
