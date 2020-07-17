@@ -1,6 +1,7 @@
 package com.scuti.users;
 
 import com.scuti.rooms.Room;
+import com.scuti.rooms.RoomTile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,9 @@ public class Habbo {
     private int diamonds;
     private HashMap<Integer, Object> inventory = null;
     private Room room;
+    private int x;
+    private int y;
+    private int z;
 
     public Habbo(ResultSet set) throws SQLException {
         this.id = set.getInt("id");
@@ -66,5 +70,16 @@ public class Habbo {
 
     public void addDiamonds(int x) {
         this.diamonds = this.diamonds + x;
+    }
+
+    public int getX() { return this.x; }
+
+    public int getY() { return this.y; }
+
+    public int getZ() { return this.z; }
+
+    //TODO: pathfinder... lol :c
+    public void goToTile(RoomTile tile) {
+
     }
 }
