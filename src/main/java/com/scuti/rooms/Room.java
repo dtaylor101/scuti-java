@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class Room {
     /** TODO: HashMap arrays for:
-     * -> users in this room
+     * -> users in this room OK
      * -> items in this room
      * -> bots in this room
      * ...
