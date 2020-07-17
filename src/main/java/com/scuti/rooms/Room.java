@@ -30,11 +30,6 @@ public class Room {
         return this.users;
     }
 
-    public void userEntry(Habbo user) {
-        this.users.put(user.getId(), user);
-        user.setCurrentRoom(this);
-    }
-
     public int getId() {
         return this.id;
     }

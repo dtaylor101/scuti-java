@@ -27,8 +27,9 @@ public class Habbo {
         return this.room;
     }
 
-    public void setCurrentRoom(Room room) {
+    public void goToRoom(Room room) {
         this.room = room;
+        room.getUsers().put(this.getId(), this);
     }
 
     public int getId() {
