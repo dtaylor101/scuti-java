@@ -1,5 +1,6 @@
 package com.scuti.users;
 
+import com.scuti.items.Item;
 import com.scuti.rooms.Room;
 import com.scuti.rooms.RoomTile;
 
@@ -13,18 +14,32 @@ public class Habbo {
     private int credits;
     private int pixels;
     private int diamonds;
-    private HashMap<Integer, Object> inventory = null;
+    private final HashMap<Integer, Item> inventory = new HashMap<Integer, Item>();
     private Room room;
     private int x;
     private int y;
     private int z;
+    private String sso;
 
     public Habbo(ResultSet set) throws SQLException {
+        // TODO: create a load function
         this.id = set.getInt("id");
         this.username = set.getString("username");
         this.credits = set.getInt("credits");
         this.pixels = set.getInt("pixels");
         this.diamonds = set.getInt("diamonds");
+    }
+
+    public boolean checkSso() {
+        return false;
+    }
+
+    public String getSso() {
+        return this.sso;
+    }
+
+    public HashMap<Integer, Item> getInventory() {
+        return this.inventory;
     }
 
     public Room getCurrentRoom() {
