@@ -45,7 +45,6 @@ public class GameServer {
     @OnWebSocketMessage
     public void onMessage(Session user, String message) throws SQLException, IOException {
         MessageManager.messageHandler(message, user);
-        System.out.println(message);
     }
 
 
