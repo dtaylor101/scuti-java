@@ -1,7 +1,7 @@
 package com.scuti.networking;
 
 import org.json.JSONObject;
-import spark.*;
+import org.eclipse.jetty.websocket.api.Session;
 import spark.Spark;
 import com.scuti.networking.gameserver.*;
 import spark.TemplateEngine;
@@ -21,7 +21,7 @@ import static spark.Spark.*;
 public class Server {
 
     public static int nextUserNumber = 1;
-    static Map<Session, String> userUsernameMap = new ConcurrentHashMap<>();
+    public static Map<Session, String> userMap = new ConcurrentHashMap<>();
 
     public static void connect() {
         staticFileLocation("/public");

@@ -8,6 +8,7 @@ import com.scuti.catalog.*;
 import com.scuti.rooms.RoomManager;
 import com.scuti.networking.*;
 import com.scuti.rooms.Room;
+import com.scuti.users.Habbo;
 import jdk.nashorn.internal.parser.JSONParser;
 import org.eclipse.jetty.websocket.api.*;
 import org.eclipse.jetty.websocket.api.annotations.*;
@@ -27,7 +28,9 @@ public class GameServer {
     private String sender, msg;
 
     @OnWebSocketConnect
-    public void onConnect(Session user) throws IOException {
+    public void onConnect(Session user) throws IOException, SQLException {
+
+
         user.getRemote().sendString(String.valueOf(new JSONObject()
                 .put("message", "la cité ma gueule")
         ));
@@ -35,12 +38,13 @@ public class GameServer {
 
     @OnWebSocketClose
     public void onClose(Session user, int statusCode, String reason) {
-        System.out.println("Somebody left :(");
+
+
     }
 
     @OnWebSocketMessage
-    public void onMessage(Session user, String message) {
-        MessageManager.messageHandler(message);
+    public void onMessage(Session user, String message) throws SQLException, IOException {
+        MessageManager.messageHandler(message, user);
         System.out.println(message);
     }
 
