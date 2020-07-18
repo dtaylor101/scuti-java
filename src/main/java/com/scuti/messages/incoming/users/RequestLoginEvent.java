@@ -19,7 +19,6 @@ public class RequestLoginEvent {
         int id = data.getInt("id");
         String sso = data.getString("ssoTicket");
         if(HabboManager.loadHabbo(sso, id)) {
-            System.out.println("CONNECTED ENFT");
             user.getRemote().sendString(String.valueOf(new JSONObject()
                     .put("connected", true)
             ));
