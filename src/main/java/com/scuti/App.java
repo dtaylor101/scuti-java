@@ -1,6 +1,7 @@
 
 package com.scuti;
 
+import com.scuti.catalog.CatalogManager;
 import com.scuti.core.ConfigurationManager;
 import com.scuti.database.Database;
 import com.scuti.rooms.RoomManager;
@@ -43,8 +44,6 @@ public class App
                     "" +
                     "                                                                                             ";
 
-    private static HikariDataSource database;
-
     public static void main(String[] args) throws SQLException {
         // SCUTI EMU
 
@@ -60,9 +59,9 @@ public class App
         ConfigurationManager.getConfiguration();
         Database.configure();
 
-        // ROOMS
+        // Preloads
         RoomManager.loadRooms();
-        System.out.println(RoomManager.getRoomsLoaded()); // / ! \ TEST!
+        CatalogManager.load();// / ! \ TEST!
 
         // GAMESERVER
         Server.connect();
