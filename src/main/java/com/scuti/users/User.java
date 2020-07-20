@@ -17,7 +17,7 @@ public class User {
     private int credits;
     private int pixels;
     private int diamonds;
-    private final ArrayList<Item> inventory = new ArrayList<Item>();
+    private final HashMap<Integer, Item> inventory = new HashMap<Integer, Item>();
     private Room room;
     private int x;
     private int y;
@@ -37,7 +37,7 @@ public class User {
     public void setInventory() {
         for(Item item: Emulator.scuti().getItemManager().getItems().values()) {
             if(item.getOwner() == this.id) {
-                this.inventory.add(item);
+                this.inventory.put(item.getId(), item);
             }
         }
     }
@@ -48,11 +48,11 @@ public class User {
     }
 
     public void addItemToInventory(Item furni) {
-        this.inventory.add(furni);
+        this.inventory.put(furni.getId(), furni);
     }
 
     public void deleteItemFromInventory(Item item) {
-
+        this.inventory.remove(item.getId());
     }
 
     public boolean checkSso() {
@@ -63,7 +63,7 @@ public class User {
         return this.sso;
     }
 
-    public ArrayList<Item> getInventory() {
+    public HashMap<Integer, Item> getInventory() {
         return this.inventory;
     }
 
