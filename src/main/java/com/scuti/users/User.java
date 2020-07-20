@@ -1,6 +1,7 @@
 package com.scuti.users;
 
 import com.scuti.items.Item;
+import com.scuti.items.ItemManager;
 import com.scuti.rooms.Room;
 import com.scuti.rooms.RoomTile;
 
@@ -14,7 +15,7 @@ public class User {
     private int credits;
     private int pixels;
     private int diamonds;
-    private final HashMap<Integer, Item> inventory = new HashMap<Integer, Item>();
+    private final HashMap<Integer, Item> inventory;
     private Room room;
     private int x;
     private int y;
@@ -28,6 +29,7 @@ public class User {
         this.credits = set.getInt("credits");
         this.pixels = set.getInt("pixels");
         this.diamonds = set.getInt("diamonds");
+        this.inventory = ItemManager.createInventory(this);
     }
 
     public boolean checkSso() {
