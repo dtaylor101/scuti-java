@@ -36,7 +36,7 @@ public class User {
     public void setInventory() {
         for(Item item: ItemManager.getItems().values()) {
             if(item.getOwner() == this.id) {
-                inventory.add(item);
+                this.inventory.add(item);
             }
         }
     }
