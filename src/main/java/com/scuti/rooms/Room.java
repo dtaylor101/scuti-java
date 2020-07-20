@@ -1,6 +1,6 @@
 package com.scuti.rooms;
 
-import com.scuti.users.Habbo;
+import com.scuti.users.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +17,7 @@ public class Room {
     private final String name;
     private final String description;
     private final int ownerId;
-    private HashMap<Integer, Habbo> users;
+    private HashMap<Integer, User> users;
 
     public Room(ResultSet req) throws SQLException {
         this.id = req.getInt("id");
@@ -26,7 +26,7 @@ public class Room {
         this.ownerId = req.getInt("owner_id");
     }
 
-    public HashMap<Integer, Habbo> getUsers() {
+    public HashMap<Integer, User> getUsers() {
         return this.users;
     }
 
