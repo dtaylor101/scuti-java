@@ -37,4 +37,13 @@ public class UserManager {
     public User getUser(int id) {
         return this.onlineUsers.get(id);
     }
+
+    public User getUser(String username) {
+        for(User user: onlineUsers.values()) {
+            if(user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
 }
