@@ -1,5 +1,6 @@
 package com.scuti.users;
 
+import com.scuti.Emulator;
 import com.scuti.items.Item;
 import com.scuti.items.ItemManager;
 import com.scuti.rooms.Room;
@@ -34,7 +35,7 @@ public class User {
     }
 
     public void setInventory() {
-        for(Item item: ItemManager.getItems().values()) {
+        for(Item item: Emulator.scuti().getItemManager().getItems().values()) {
             if(item.getOwner() == this.id) {
                 this.inventory.add(item);
             }

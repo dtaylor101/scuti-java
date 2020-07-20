@@ -1,6 +1,6 @@
 package com.scuti.catalog;
 
-import com.scuti.App;
+import com.scuti.Emulator;
 import com.scuti.database.Database;
 
 import java.sql.Connection;
@@ -39,19 +39,19 @@ public class CatalogManager {
     }*/
 
     public static void loadPages() throws SQLException {
-        System.out.println(App.LOADING + "Loading catalog pages...");
+        System.out.println(Emulator.LOADING + "Loading catalog pages...");
         long millis = System.currentTimeMillis();
         try(Connection connection = Database.getDB().getConnection()) {
             try(Statement statement = connection.createStatement()) {
                 try(ResultSet req = statement.executeQuery("SELECT * FROM catalog_pages")) {
                     while(req.next()) {
                         pages.put(req.getInt("id"), new CatalogPage(req));
-                        System.out.println(App.SUCCESS + "Catalog pages -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
+                        System.out.println(Emulator.SUCCESS + "Catalog pages -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
                     }
                 }
             }
         } catch(Exception e) {
-            System.out.println(App.ERROR + "Unable to load catalog pages!");
+            System.out.println(Emulator.ERROR + "Unable to load catalog pages!");
         }
     }
 }

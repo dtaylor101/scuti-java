@@ -1,6 +1,6 @@
 package com.scuti.database;
 
-import com.scuti.App;
+import com.scuti.Emulator;
 import com.scuti.core.ConfigurationManager;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -10,7 +10,7 @@ public class Database {
     public static void configure() {
         long millis = System.currentTimeMillis();
         try {
-            System.out.println(App.LOADING + "Connection to database...");
+            System.out.println(Emulator.LOADING + "Connection to database...");
             HikariConfig dbConfig = new HikariConfig();
             dbConfig.setDriverClassName("com.mysql.jdbc.Driver");
             dbConfig.setJdbcUrl("jdbc:mysql://" + ConfigurationManager.dbhost + ":" + ConfigurationManager.dbport + "/" + ConfigurationManager.dbname + "");
@@ -19,10 +19,10 @@ public class Database {
 
             database = new HikariDataSource(dbConfig);
         } catch (Exception e) {
-            System.out.println(App.ERROR + "Unable to connect to the database.");
+            System.out.println(Emulator.ERROR + "Unable to connect to the database.");
             System.exit(0);
         }
-        System.out.println(App.SUCCESS + "Database manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
+        System.out.println(Emulator.SUCCESS + "Database manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
     }
 
     public static HikariDataSource getDB() {

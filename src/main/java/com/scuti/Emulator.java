@@ -11,8 +11,9 @@ import org.fusesource.jansi.AnsiConsole;
 
 import java.sql.SQLException;
 
-public class App
+public class Emulator
 {
+    private static Scuti Scuti;
     private static final String  classPath = System.getProperty("java.class.path");
     private static final String osName = System.getProperty("os.name");
 
@@ -59,9 +60,9 @@ public class App
         ConfigurationManager.getConfiguration();
         Database.configure();
 
-        // Preloads
-        RoomManager.loadRooms();
-        CatalogManager.load();// / ! \ TEST!
+        // Scuti initialization
+        Scuti = new Scuti();
+        Scuti.preload();
 
         // GAMESERVER
         Server.connect();
@@ -70,5 +71,9 @@ public class App
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public static Scuti scuti() {
+        return Scuti;
     }
 }

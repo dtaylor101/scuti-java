@@ -31,7 +31,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>com.scuti.App</mainClass>
+              <mainClass>com.scuti.Emulator</mainClass>
             </manifest>
           </archive>
         </configuration>

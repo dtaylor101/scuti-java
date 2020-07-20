@@ -1,26 +1,13 @@
 package com.scuti.networking.gameserver;
 
-import com.scuti.App;
-import com.scuti.database.Database;
 import com.scuti.messages.MessageManager;
-import com.scuti.networking.Server;
-import com.scuti.catalog.*;
-import com.scuti.rooms.RoomManager;
-import com.scuti.networking.*;
-import com.scuti.rooms.Room;
 import com.scuti.users.Habbo;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.eclipse.jetty.websocket.api.*;
 import org.eclipse.jetty.websocket.api.annotations.*;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.*;
-import java.util.concurrent.*;
 
 @WebSocket
 public class GameServer {

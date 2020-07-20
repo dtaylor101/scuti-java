@@ -6,13 +6,17 @@ import java.util.HashMap;
 
 public class ItemManager {
 
-    private static final HashMap<Integer, Item> items = new HashMap<Integer, Item>();
+    private final HashMap<Integer, Item> items;
 
-    public static void load() {
+    public ItemManager() {
+        this.items = new HashMap<Integer, Item>();
+    }
+
+    public void loadItems() {
 
     }
 
-    public static HashMap<Integer, Item> getItems() {
-        return items;
+    public HashMap<Integer, Item> getItems() {
+        return this.items;
     }
 }

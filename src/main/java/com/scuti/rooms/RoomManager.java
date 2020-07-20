@@ -1,6 +1,6 @@
 package com.scuti.rooms;
 
-import com.scuti.App;
+import com.scuti.Emulator;
 import com.scuti.database.Database;
 
 import java.sql.Connection;
@@ -10,27 +10,31 @@ import java.sql.Statement;
 import java.util.HashMap;
 
 public class RoomManager {
-    private static final HashMap<Integer, Room> rooms = new HashMap<Integer, Room>();
+    private final HashMap<Integer, Room> rooms;
 
-    public static void loadRooms() throws SQLException {
-        System.out.println(App.LOADING + "Loading room manager...");
+    public RoomManager() {
+        this.rooms = new HashMap<Integer, Room>();
+    }
+
+    public void loadRooms() throws SQLException {
+        System.out.println(Emulator.LOADING + "Loading room manager...");
         long millis = System.currentTimeMillis();
         try(Connection connection = Database.getDB().getConnection()) {
             try(Statement statement = connection.createStatement()) {
                 try(ResultSet req = statement.executeQuery("SELECT * FROM rooms")) {
                     while(req.next()) {
-                        rooms.put(req.getInt("id"), new Room(req));
+                        this.rooms.put(req.getInt("id"), new Room(req));
                     }
                 }
             }
         } catch (Exception e) {
-            System.out.println(App.ERROR + "Unable to load room manager!");
+            System.out.println(Emulator.ERROR + "Unable to load room manager!");
             System.exit(0);
         }
-        System.out.println(App.SUCCESS + "Room manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
+        System.out.println(Emulator.SUCCESS + "Room manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
     }
 
-    public static HashMap<Integer, Room> getRoomsLoaded() {
-        return rooms;
+    public HashMap<Integer, Room> getRoomsLoaded() {
+        return this.rooms;
     }
 }

@@ -1,7 +1,7 @@
 package com.scuti.core;
 
 import org.ini4j.*;
-import com.scuti.App;
+import com.scuti.Emulator;
 import java.io.File;
 
 
@@ -14,7 +14,7 @@ public class ConfigurationManager {
     public static void getConfiguration() {
         long millis = System.currentTimeMillis();
         try{
-            System.out.println(App.LOADING + "Loading configuration file...");
+            System.out.println(Emulator.LOADING + "Loading configuration file...");
             Wini ini = new Wini(new File("config.ini"));
             dbhost = ini.get("database", "dbhost");
             dbport = ini.get("database", "dbport");
@@ -24,9 +24,9 @@ public class ConfigurationManager {
 
 
         }catch(Exception e){
-            System.err.println(App.ERROR + e.getMessage());
+            System.err.println(Emulator.ERROR + e.getMessage());
             System.exit(0);
         }
-        System.out.println(App.SUCCESS + "Configuration manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
+        System.out.println(Emulator.SUCCESS + "Configuration manager -> OK! (" + (System.currentTimeMillis() - millis) + " MS)");
     }
 }
