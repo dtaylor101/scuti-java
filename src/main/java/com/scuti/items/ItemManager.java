@@ -15,17 +15,4 @@ public class ItemManager {
     public static HashMap<Integer, Item> getItems() {
         return items;
     }
-
-    public static HashMap<Integer, Item> createInventory(User user) {
-        HashMap<Integer, Item> inventory = new HashMap<Integer, Item>();
-        int n = 0;
-        for(Item item: items.values()) {
-            if(item.getOwner() == user.getId()) {
-                n = n + 1;
-                inventory.put(n, item);
-            }
-        }
-
-        return inventory;
-    }
 }

@@ -7,6 +7,7 @@ import com.scuti.rooms.RoomTile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
@@ -15,7 +16,7 @@ public class User {
     private int credits;
     private int pixels;
     private int diamonds;
-    private final HashMap<Integer, Item> inventory;
+    private final ArrayList<Item> inventory = new ArrayList<Item>();
     private Room room;
     private int x;
     private int y;
@@ -29,7 +30,28 @@ public class User {
         this.credits = set.getInt("credits");
         this.pixels = set.getInt("pixels");
         this.diamonds = set.getInt("diamonds");
-        this.inventory = ItemManager.createInventory(this);
+        this.setInventory();
+    }
+
+    public void setInventory() {
+        for(Item item: ItemManager.getItems().values()) {
+            if(item.getOwner() == this.id) {
+                inventory.add(item);
+            }
+        }
+    }
+
+    public void giveGift(User user, Item furni) {
+        this.deleteItemFromInventory(furni);
+        user.addItemToInventory(furni);
+    }
+
+    public void addItemToInventory(Item furni) {
+        this.inventory.add(furni);
+    }
+
+    public void deleteItemFromInventory(Item item) {
+
     }
 
     public boolean checkSso() {
@@ -40,7 +62,7 @@ public class User {
         return this.sso;
     }
 
-    public HashMap<Integer, Item> getInventory() {
+    public ArrayList<Item> getInventory() {
         return this.inventory;
     }
 
