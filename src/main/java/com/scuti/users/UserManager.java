@@ -5,8 +5,8 @@ import com.scuti.database.Database;
 import java.sql.*;
 import java.util.HashMap;
 
-public class HabboManager {
-    private static final HashMap<Integer, Habbo> onlineUsers = new HashMap<Integer, Habbo>();
+public class UserManager {
+    private static final HashMap<Integer, User> onlineUsers = new HashMap<Integer, User>();
 
     public static void loadHabbo(String sso, int userId) throws SQLException {
         try(Connection connection = Database.getDB().getConnection()) {
@@ -15,7 +15,7 @@ public class HabboManager {
                 statement.setInt(2, userId);
                 try(ResultSet set = statement.executeQuery()) {
                     if(set.next()) {
-                        onlineUsers.put(set.getInt("id"), new Habbo(set));
+                        onlineUsers.put(set.getInt("id"), new User(set));
                     } else {
                         System.out.println("USERID : " + userId + " -> failed to login!");
                     }
@@ -26,11 +26,11 @@ public class HabboManager {
         }
     }
 
-    public static HashMap<Integer, Habbo> getOnlineUsers() {
+    public static HashMap<Integer, User> getOnlineUsers() {
         return onlineUsers;
     }
 
-    public static Habbo getUser(int id) {
+    public static User getUser(int id) {
         return onlineUsers.get(id);
     }
 }

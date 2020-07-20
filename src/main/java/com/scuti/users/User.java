@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class Habbo {
+public class User {
     private final int id;
     private String username;
     private int credits;
@@ -21,7 +21,7 @@ public class Habbo {
     private int z;
     private String sso;
 
-    public Habbo(ResultSet set) throws SQLException {
+    public User(ResultSet set) throws SQLException {
         // TODO: create a load function
         this.id = set.getInt("id");
         this.username = set.getString("username");
