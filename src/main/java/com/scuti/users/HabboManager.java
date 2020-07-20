@@ -29,4 +29,8 @@ public class HabboManager {
     public static HashMap<Integer, Habbo> getOnlineUsers() {
         return onlineUsers;
     }
+
+    public static Habbo getUser(int id) {
+        return onlineUsers.get(id);
+    }
 }
