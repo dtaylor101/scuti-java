@@ -19,6 +19,12 @@ public class Item {
         // TODO: create database table corresponding to this class
     }
 
+    public Item(int id, int ownerId, int furnitureId) {
+        this.id = id;
+        this.ownerId = ownerId;
+        this.furnitureId = furnitureId;
+    }
+
     public int getId() {
         return this.id;
     }

@@ -1,6 +1,7 @@
 package com.scuti.users;
 
 import com.scuti.Emulator;
+import com.scuti.catalog.CatalogItem;
 import com.scuti.items.Item;
 import com.scuti.items.ItemManager;
 import com.scuti.rooms.Room;
@@ -32,6 +33,21 @@ public class User {
         this.pixels = set.getInt("pixels");
         this.diamonds = set.getInt("diamonds");
         this.setInventory();
+    }
+
+    public void purchase(CatalogItem catalogItem) {
+        if(catalogItem.isPurchasable()) {
+            if(this.credits >= catalogItem.getCostCredits() && this.pixels >= catalogItem.getCostPixels() && this.diamonds >= catalogItem.getCostDiamonds()) {
+                Item item = new Item(Emulator.scuti().getItemManager().getItems().size() + 1, this.id, catalogItem.getId());
+                this.addCredits(-catalogItem.getCostCredits());
+                this.addPixels(-catalogItem.getCostPixels());
+                this.addDiamonds(-catalogItem.getCostDiamonds());
+            } else {
+
+            }
+        } else {
+            // TODO: Message composer
+        }
     }
 
     public void setInventory() {

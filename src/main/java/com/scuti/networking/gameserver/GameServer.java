@@ -1,7 +1,6 @@
 package com.scuti.networking.gameserver;
 
 import com.scuti.messages.MessageManager;
-import com.scuti.users.Habbo;
 import org.eclipse.jetty.websocket.api.*;
 import org.eclipse.jetty.websocket.api.annotations.*;
 import org.json.JSONObject;
