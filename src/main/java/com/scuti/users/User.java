@@ -2,8 +2,10 @@ package com.scuti.users;
 
 import com.scuti.Emulator;
 import com.scuti.catalog.CatalogItem;
+import com.scuti.gameclients.GameClient;
 import com.scuti.items.Item;
 import com.scuti.items.ItemManager;
+import com.scuti.messages.outgoing.generic.BubbleAlertComposer;
 import com.scuti.rooms.Room;
 import com.scuti.rooms.RoomTile;
 
@@ -18,12 +20,13 @@ public class User {
     private int credits;
     private int pixels;
     private int diamonds;
-    private final HashMap<Integer, Item> inventory = new HashMap<Integer, Item>();
+    private final HashMap<Integer, Item> inventory;
     private Room room;
     private int x;
     private int y;
     private int z;
     private String sso;
+    private GameClient client;
 
     public User(ResultSet set) throws SQLException {
         // TODO: create a load function
@@ -32,21 +35,37 @@ public class User {
         this.credits = set.getInt("credits");
         this.pixels = set.getInt("pixels");
         this.diamonds = set.getInt("diamonds");
+        this.inventory = new HashMap<Integer, Item>();
         this.setInventory();
+    }
+
+    public void setClient(GameClient gameClient) {
+        this.client = gameClient;
+    }
+
+    public GameClient getClient() {
+        return this.client;
+    }
+
+    public boolean canBuy(CatalogItem catalogItem) {
+        int credits = catalogItem.getCostCredits();
+        int pixels = catalogItem.getCostPixels();
+        int diamonds = catalogItem.getCostDiamonds();
+        return this.credits >= credits && this.pixels >= pixels && this.diamonds >= diamonds;
     }
 
     public void purchase(CatalogItem catalogItem) {
         if(catalogItem.isPurchasable()) {
-            if(this.credits >= catalogItem.getCostCredits() && this.pixels >= catalogItem.getCostPixels() && this.diamonds >= catalogItem.getCostDiamonds()) {
+            if(this.canBuy(catalogItem)) {
                 Item item = new Item(Emulator.scuti().getItemManager().getItems().size() + 1, this.id, catalogItem.getId());
                 this.addCredits(-catalogItem.getCostCredits());
                 this.addPixels(-catalogItem.getCostPixels());
                 this.addDiamonds(-catalogItem.getCostDiamonds());
             } else {
-
+                this.client.sendMessage(new BubbleAlertComposer("/smthg.png", "AA", "AA"));
             }
         } else {
-            // TODO: Message composer
+            this.client.sendMessage(new BubbleAlertComposer("/smthg.png", "AA", "AA"));
         }
     }
 
