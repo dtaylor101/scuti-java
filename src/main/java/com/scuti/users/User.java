@@ -5,7 +5,6 @@ import com.scuti.catalog.CatalogItem;
 import com.scuti.gameclients.GameClient;
 import com.scuti.items.Item;
 import com.scuti.items.ItemManager;
-import com.scuti.messages.outgoing.generic.BubbleAlertComposer;
 import com.scuti.rooms.Room;
 import com.scuti.rooms.RoomTile;
 
@@ -62,10 +61,10 @@ public class User {
                 this.addPixels(-catalogItem.getCostPixels());
                 this.addDiamonds(-catalogItem.getCostDiamonds());
             } else {
-                this.client.sendMessage(new BubbleAlertComposer("/smthg.png", "AA", "AA"));
+                // this.client.sendMessage(new BubbleAlertComposer("/smthg.png", "AA", "AA"));
             }
         } else {
-            this.client.sendMessage(new BubbleAlertComposer("/smthg.png", "AA", "AA"));
+            // this.client.sendMessage(new BubbleAlertComposer("/smthg.png", "AA", "AA"));
         }
     }
 

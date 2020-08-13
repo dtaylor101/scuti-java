@@ -10,7 +10,6 @@ public class Database {
     public static void configure() {
         long millis = System.currentTimeMillis();
         try {
-            System.out.println(Emulator.LOADING + "Connection to database...");
             HikariConfig dbConfig = new HikariConfig();
             dbConfig.setDriverClassName("com.mysql.jdbc.Driver");
             dbConfig.setJdbcUrl("jdbc:mysql://" + ConfigurationManager.dbhost + ":" + ConfigurationManager.dbport + "/" + ConfigurationManager.dbname + "");

@@ -48,7 +48,6 @@ public class CatalogManager {
     }*/
 
     public void loadPages() throws SQLException {
-        System.out.println(Emulator.LOADING + "Loading catalog pages...");
         long millis = System.currentTimeMillis();
         try(Connection connection = Database.getDB().getConnection()) {
             try(Statement statement = connection.createStatement()) {
