@@ -11,10 +11,11 @@ public class ConfigurationManager {
     public static String dbname;
     public static String dbuser;
     public static String dbpass;
+
     public static void getConfiguration() {
         long millis = System.currentTimeMillis();
-        try{
-            System.out.println(Emulator.LOADING + "Loading configuration file...");
+
+        try {
             Wini ini = new Wini(new File("config.ini"));
             dbhost = ini.get("database", "dbhost");
             dbport = ini.get("database", "dbport");
@@ -23,7 +24,7 @@ public class ConfigurationManager {
             dbpass = ini.get("database", "dbpass");
 
 
-        }catch(Exception e){
+        } catch(Exception e) {
             System.err.println(Emulator.ERROR + e.getMessage());
             System.exit(0);
         }

@@ -17,7 +17,6 @@ public class RoomManager {
     }
 
     public void loadRooms() throws SQLException {
-        System.out.println(Emulator.LOADING + "Loading room manager...");
         long millis = System.currentTimeMillis();
         try(Connection connection = Database.getDB().getConnection()) {
             try(Statement statement = connection.createStatement()) {
