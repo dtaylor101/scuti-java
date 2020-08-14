@@ -7,6 +7,7 @@ import org.eclipse.jetty.websocket.api.annotations.*;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebSocket
 public class GameServer {
@@ -23,7 +24,7 @@ public class GameServer {
     }
 
     @OnWebSocketMessage
-    public void onMessage(Session user, String message) throws IOException, IllegalAccessException, InstantiationException {
+    public void onMessage(Session user, String message) throws IOException, IllegalAccessException, InstantiationException, SQLException {
         JSONObject msg = new JSONObject(message);
 
         int packet = msg.getInt("packetId");
@@ -34,6 +35,7 @@ public class GameServer {
         Class<? extends IncomingEvent> eventClass = Emulator.scuti().getIncomingEventManager().getEvents().get(packet);
         IncomingEvent event = eventClass.newInstance();
         event.data = data;
+        event.session = user;
         event.handle();
     }
 

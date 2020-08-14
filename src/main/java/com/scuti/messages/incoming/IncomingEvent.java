@@ -1,8 +1,12 @@
 package com.scuti.messages.incoming;
 
+import org.eclipse.jetty.websocket.api.Session;
 import org.json.JSONObject;
+
+import java.sql.SQLException;
 
 public abstract class IncomingEvent {
     public JSONObject data;
-    public abstract void handle();
+    public Session session;
+    public abstract void handle() throws SQLException;
 }

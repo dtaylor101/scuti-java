@@ -7,6 +7,7 @@ import com.scuti.items.Item;
 import com.scuti.items.ItemManager;
 import com.scuti.rooms.Room;
 import com.scuti.rooms.RoomTile;
+import org.eclipse.jetty.websocket.api.Session;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ public class User {
     private int y;
     private int z;
     private String sso;
-    private GameClient client;
+    private Session client;
 
     public User(ResultSet set) throws SQLException {
         // TODO: create a load function
@@ -38,11 +39,11 @@ public class User {
         this.setInventory();
     }
 
-    public void setClient(GameClient gameClient) {
-        this.client = gameClient;
+    public void setClient(Session client) {
+        this.client = client;
     }
 
-    public GameClient getClient() {
+    public Session getClient() {
         return this.client;
     }
 
