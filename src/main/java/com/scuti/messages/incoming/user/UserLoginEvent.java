@@ -17,6 +17,7 @@ public class UserLoginEvent extends IncomingEvent {
                 statement.setString(1, username);
                 try(ResultSet set = statement.executeQuery()) {
                     if(set.next()) {
+                        Emulator.scuti().getUserManager().loadHabbo(set);
                         JSONObject output = new JSONObject();
                         output.put("packedId", 222);
                         output.put("isConnected", true);

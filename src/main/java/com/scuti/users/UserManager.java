@@ -12,22 +12,24 @@ public class UserManager {
         this.onlineUsers = new HashMap<Integer, User>();
     }
 
-    public void loadHabbo(String sso, int userId) throws SQLException {
-        try(Connection connection = Database.getDB().getConnection()) {
-            try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE auth_ticket = ? AND id = ?")) {
-                statement.setString(1, sso);
-                statement.setInt(2, userId);
-                try(ResultSet set = statement.executeQuery()) {
-                    if(set.next()) {
-                        this.onlineUsers.put(set.getInt("id"), new User(set));
-                    } else {
-                        System.out.println("USERID : " + userId + " -> failed to login!");
-                    }
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("LoadHabbo failed!");
-        }
+    public void loadHabbo(ResultSet set) throws SQLException {
+        //try(Connection connection = Database.getDB().getConnection()) {
+        //    try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE auth_ticket = ? AND id = ?")) {
+        //        statement.setString(1, sso);
+        //        statement.setInt(2, userId);
+        //        try(ResultSet set = statement.executeQuery()) {
+        //            if(set.next()) {
+        //                this.onlineUsers.put(set.getInt("id"), new User(set));
+        //            } else {
+        //                System.out.println("USERID : " + userId + " -> failed to login!");
+        //            }
+        //        }
+        //    }
+        //} catch (Exception e) {
+        //    System.out.println("LoadHabbo failed!");
+        //}
+        //TODO: Work with ID rather than username
+        this.onlineUsers.put(set.getInt("id"), new User(set));
     }
 
     public HashMap<Integer, User> getOnlineUsers() {
