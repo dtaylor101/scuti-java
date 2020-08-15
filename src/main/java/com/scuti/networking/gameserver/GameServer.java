@@ -27,12 +27,19 @@ public class GameServer {
         JSONObject data = new JSONObject(message);
 
         //System.out.println(msg.toString());
-
-        Class<? extends IncomingEvent> eventClass = Emulator.scuti().getIncomingEventManager().getEvents().get(data.getInt("packetId"));
-        IncomingEvent event = eventClass.newInstance();
-        event.data = data;
-        event.session = user;
-        event.handle();
+        if(data.has("packetId") && data.has("data")) {
+            if(Emulator.scuti().getIncomingEventManager().getEvents().containsKey(data.getInt("packetId"))) {
+                Class<? extends IncomingEvent> eventClass = Emulator.scuti().getIncomingEventManager().getEvents().get(data.getInt("packetId"));
+                IncomingEvent event = eventClass.newInstance();
+                event.data = data;
+                event.session = user;
+                event.handle();
+            } else {
+                System.out.println("This packet id does not exist!");
+            }
+        } else {
+            System.out.println("Invalid packet received!");
+        }
     }
 
 }
