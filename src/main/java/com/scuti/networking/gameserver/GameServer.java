@@ -15,7 +15,6 @@ public class GameServer {
     @OnWebSocketConnect
     public void onConnect(Session user) throws Exception {
         System.out.println(user.getRemoteAddress().getHostName().concat(" is connected!"));
-        user.getRemote().sendString("test");
     }
 
     @OnWebSocketClose
@@ -30,7 +29,7 @@ public class GameServer {
         int packet = msg.getInt("packetId");
         JSONObject data = msg.getJSONObject("data");
 
-        System.out.println(msg.toString());
+        //System.out.println(msg.toString());
 
         Class<? extends IncomingEvent> eventClass = Emulator.scuti().getIncomingEventManager().getEvents().get(packet);
         IncomingEvent event = eventClass.newInstance();
