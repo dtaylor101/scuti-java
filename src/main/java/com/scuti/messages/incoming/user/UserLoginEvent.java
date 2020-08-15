@@ -3,6 +3,8 @@ package com.scuti.messages.incoming.user;
 import com.scuti.Emulator;
 import com.scuti.database.Database;
 import com.scuti.messages.incoming.IncomingEvent;
+import com.scuti.messages.outgoing.Outgoing;
+import com.scuti.messages.outgoing.OutgoingMessage;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -12,34 +14,29 @@ public class UserLoginEvent extends IncomingEvent {
     @Override
     public void handle() throws SQLException {
         // TODO: make sure the connection with SSO/Token
-        String username = this.data.getString("username");
+        String username = this.data.getJSONObject("data").getString("username");
         try(Connection connection = Database.getDB().getConnection()) {
             try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ?")) {
                 statement.setString(1, username);
                 try(ResultSet set = statement.executeQuery()) {
                     if(set.next()) {
-                        Emulator.scuti().getUserManager().loadHabbo(set);
                         JSONObject output = new JSONObject();
-                        JSONObject data = new JSONObject();
-                        JSONObject user = new JSONObject();
+                        output.put("username", username);
 
-                        user.put("username", username);
+                        Class<? extends OutgoingMessage> classMessage = Emulator.scuti().getOutgoingMessageManager().getMessages().get(Outgoing.UserLoginMessage);
+                        OutgoingMessage message = classMessage.newInstance();
+                        message.client = this.session;
+                        message.data = output;
 
-                        data.put("isLogged", true);
-                        data.put("user", user);
-
-                        output.put("packetId", 222);
-                        output.put("data", data);
-
-                        System.out.println(output.toString());
-                        this.session.getRemote().sendString(output.toString());
+                        message.compose();
                     } else {
                         System.out.println(username.concat(" doesn't exist!"));
                     }
-                    set.close();
+                } catch (IllegalAccessException | InstantiationException | IOException e) {
+                    e.printStackTrace();
                 }
             }
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             System.out.println(Emulator.ERROR + "[UserLoginEvent] Cannot execute request!");
         }
     }

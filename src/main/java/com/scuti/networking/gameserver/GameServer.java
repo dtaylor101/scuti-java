@@ -24,14 +24,11 @@ public class GameServer {
 
     @OnWebSocketMessage
     public void onMessage(Session user, String message) throws IOException, IllegalAccessException, InstantiationException, SQLException {
-        JSONObject msg = new JSONObject(message);
-
-        int packet = msg.getInt("packetId");
-        JSONObject data = msg.getJSONObject("data");
+        JSONObject data = new JSONObject(message);
 
         //System.out.println(msg.toString());
 
-        Class<? extends IncomingEvent> eventClass = Emulator.scuti().getIncomingEventManager().getEvents().get(packet);
+        Class<? extends IncomingEvent> eventClass = Emulator.scuti().getIncomingEventManager().getEvents().get(data.getInt("packetId"));
         IncomingEvent event = eventClass.newInstance();
         event.data = data;
         event.session = user;
