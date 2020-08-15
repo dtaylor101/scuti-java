@@ -22,6 +22,5 @@ public class UserLoginMessage extends OutgoingMessage {
         packet.put("data", data);
 
         this.client.getRemote().sendString(packet.toString());
-        System.out.println(this.data.getString("username").concat(" is now connected!"));
     }
 }

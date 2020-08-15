@@ -5,6 +5,7 @@ import com.scuti.database.Database;
 import com.scuti.messages.incoming.IncomingEvent;
 import com.scuti.messages.outgoing.Outgoing;
 import com.scuti.messages.outgoing.OutgoingMessage;
+import com.scuti.users.User;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -22,6 +23,8 @@ public class UserLoginEvent extends IncomingEvent {
                     if(set.next()) {
                         JSONObject output = new JSONObject();
                         output.put("username", username);
+
+                        Emulator.scuti().getUserManager().loadHabbo(set, this.session);
 
                         Class<? extends OutgoingMessage> classMessage = Emulator.scuti().getOutgoingMessageManager().getMessages().get(Outgoing.UserLoginMessage);
                         OutgoingMessage message = classMessage.newInstance();

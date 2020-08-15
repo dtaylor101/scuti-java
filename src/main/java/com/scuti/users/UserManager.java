@@ -1,6 +1,7 @@
 package com.scuti.users;
 
 import com.scuti.database.Database;
+import org.eclipse.jetty.websocket.api.Session;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -12,7 +13,7 @@ public class UserManager {
         this.onlineUsers = new HashMap<Integer, User>();
     }
 
-    public void loadHabbo(ResultSet set) throws SQLException {
+    public void loadHabbo(ResultSet set, Session session) throws SQLException {
         //try(Connection connection = Database.getDB().getConnection()) {
         //    try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE auth_ticket = ? AND id = ?")) {
         //        statement.setString(1, sso);
@@ -28,7 +29,9 @@ public class UserManager {
         //} catch (Exception e) {
         //    System.out.println("LoadHabbo failed!");
         //}
-        //TODO: Work with ID rather than username
+        //TODO: Work with ID rather than username / SSO
+        User user = new User(set);
+        user.setClient(session);
         this.onlineUsers.put(set.getInt("id"), new User(set));
     }
 
