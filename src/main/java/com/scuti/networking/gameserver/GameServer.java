@@ -14,7 +14,7 @@ public class GameServer {
 
     @OnWebSocketConnect
     public void onConnect(Session user) throws Exception {
-        System.out.println(user.getRemoteAddress().getHostName().concat(" is connected!"));
+
     }
 
     @OnWebSocketClose
