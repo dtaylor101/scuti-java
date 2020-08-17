@@ -7,6 +7,8 @@ import com.scuti.messages.outgoing.OutgoingMessageManager;
 import com.scuti.rooms.RoomManager;
 import com.scuti.users.UserManager;
 
+import java.sql.SQLException;
+
 public class Scuti {
     private final UserManager userManager;
     private final RoomManager roomManager;
@@ -24,8 +26,8 @@ public class Scuti {
         this.outgoingMessageManager = new OutgoingMessageManager();
     }
 
-    public void preload() {
-
+    public void preload() throws SQLException {
+        this.roomManager.loadRooms();
     }
 
     public OutgoingMessageManager getOutgoingMessageManager() {

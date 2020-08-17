@@ -33,6 +33,7 @@ public class UserManager {
         User user = new User(set);
         user.setClient(session);
         this.onlineUsers.put(set.getInt("id"), new User(set));
+        System.out.println(user.getUsername().concat(" is connected!"));
     }
 
     public HashMap<Integer, User> getOnlineUsers() {
