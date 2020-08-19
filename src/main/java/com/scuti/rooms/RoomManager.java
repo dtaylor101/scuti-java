@@ -16,7 +16,7 @@ public class RoomManager {
         this.rooms = new HashMap<Integer, Room>();
     }
 
-    public void loadRooms() throws SQLException {
+    public void loadRooms() {
         long millis = System.currentTimeMillis();
         try(Connection connection = Database.getDB().getConnection()) {
             try(Statement statement = connection.createStatement()) {
