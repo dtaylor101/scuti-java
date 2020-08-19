@@ -1,5 +1,6 @@
 package com.scuti.users;
 
+import com.scuti.Emulator;
 import com.scuti.database.Database;
 import org.eclipse.jetty.websocket.api.Session;
 
@@ -32,6 +33,8 @@ public class UserManager {
         //TODO: Work with ID rather than username / SSO
         User user = new User(set);
         user.setClient(session);
+
+        Emulator.scuti().gameClientManager().getClients().put(user.getClient(), user);
         this.onlineUsers.put(set.getInt("id"), new User(set));
         System.out.println(user.getUsername().concat(" is connected!"));
     }
