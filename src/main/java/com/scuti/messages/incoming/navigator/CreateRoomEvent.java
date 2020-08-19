@@ -23,6 +23,7 @@ public class CreateRoomEvent extends IncomingEvent {
 
                 // ??
                 try(ResultSet req = statement.executeQuery()) {
+                    System.out.println(req.getString("name"));
                     Emulator.scuti().getRoomManager().getRoomsLoaded().put(req.getInt("id"), new Room(req));
                 }
             }

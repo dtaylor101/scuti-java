@@ -1,5 +1,6 @@
 package com.scuti.messages.incoming;
 
+import com.scuti.messages.incoming.navigator.CreateRoomEvent;
 import com.scuti.messages.incoming.navigator.OpenNavigatorEvent;
 import com.scuti.messages.incoming.user.UserLoginEvent;
 
@@ -20,5 +21,6 @@ public class IncomingEventManager {
     public void registerUserEvent() {
         events.put(Incoming.UserLoginEvent, UserLoginEvent.class);
         events.put(Incoming.OpenNavigatorEvent, OpenNavigatorEvent.class);
+        events.put(Incoming.CreateRoomEvent, CreateRoomEvent.class);
     }
 }
